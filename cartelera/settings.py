@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',#GAM: Agregar el nombre de cada app creada
+    'cat',#GAM: Agregar el nombre de cada app creada
 ]
 
 MIDDLEWARE = [

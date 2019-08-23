@@ -1,0 +1,31 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form role="form" action="{% url 'gen:gen_del' obj.pk %}" method="post"  class="form-inline">
+            <div class="col-xl-12 col-md-12 mb-12">
+                <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Eliminar genero
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        {% csrf_token %}
+                        <div class="row">
+                            ¿Eliminar el genero: <b> {{ obj.descripcion }} </b> ?
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="row divBtnModal">
+                            <div class="col">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Eliminar</button>
+                                <button type="button" class="btn btn-danger" onclick="return cerrar_modal()"><i class="fas fa-trash"></i> Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
