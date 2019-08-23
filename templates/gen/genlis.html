@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block pagecontent %}
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Lista de generos</h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <div id="btnAdd">
+            <a class="btn btn-secondary" onclick="return abrir_modal('{% url 'cat:genew' %}')" href="#" title="Agregar"><i class="fas fa-plus-circle"></i> </a>
+        </div>
+        <table
+        id="table"
+        data-toggle="table"
+        data-show-columns="true"
+        data-show-toggle="true"
+        data-show-fullscreen="true"
+        data-toolbar="#btnAdd"
+        >
+            <thead>
+                <th>#</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                {% for item in obj %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td><!-- {{ item.estado|yesno:'Activo,Inactivo' }} -->
+                        <div class="divAccionTable">
+                            {% if item.edo %}
+                            <i class="fas fa-circle text-success"></i>
+                            {% else %}
+                            <i class="fas fa-circle text-danger"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="divAccionTable">
+                            <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cat:geedit' item.id %}')"><i class="fas fa-edit"></i></button>
+                            <a href="{% url 'cat:gedel' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not obj %}
+        <div class="alert alert-info text-center">No hay productos</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock pagecontent %}
+
+{% block jspage %}
+{% endblock jspage %}

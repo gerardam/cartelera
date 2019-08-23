@@ -8,12 +8,12 @@ from .forms import GeneroForm
 ########## GENEROS ##########
 class GeneroView(generic.ListView):
     model = Genero
-    template_name = 'cat/genlis.html'
+    template_name = 'gen/genlis.html'
     context_object_name = 'obj'
 
 class GeneroNew(generic.CreateView):
     model = Genero
-    template_name = 'cat/genfor.html'
+    template_name = 'gen/genfor.html'
     context_object_name = 'obj'
     form_class = GeneroForm
     success_url = reverse_lazy('cat:gelist')
@@ -24,7 +24,7 @@ class GeneroNew(generic.CreateView):
 
 class GeneroEdit(generic.UpdateView):
     model = Genero
-    template_name = 'cat/genfor.html'
+    template_name = 'gen/genfor.html'
     context_object_name = 'obj'
     form_class = GeneroForm
     success_url = reverse_lazy('cat:gelist')
@@ -36,7 +36,7 @@ class GeneroEdit(generic.UpdateView):
 def GeneroInac(request, id):
     genero = Genero.objects.filter(pk=id).first()
     contexto = {}
-    template_name = 'cat/gendel.html'
+    template_name = 'gen/gendel.html'
 
     if not genero:
         return redirect('cat:gelist')

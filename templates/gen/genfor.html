@@ -1,9 +1,9 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         {% if obj %}
-        <form method="POST" role="form" class="form-inline" action="{% url 'gen:gen_edi' obj.pk %}">
+        <form method="POST" role="form" class="form-inline" action="{% url 'cat:geedit' obj.pk %}">
         {% else %}
-        <form method="POST" role="form" class="form-inline" action="{% url 'gen:gen_new' %}">
+        <form method="POST" role="form" class="form-inline" action="{% url 'cat:genew' %}">
         {% endif %}
             {% csrf_token %}
             <div class="col-xl-12 col-md-12 mb-12">
@@ -20,7 +20,18 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-                                    {{ form.as_p }}
+                                    <div class="col-10">
+                                        <div class="input-group">
+                                            <input type="text" name="descripcion" maxlength="100" class="form-control" required id="id_descripcion" placeholder="Descripcion" value="{% if obj %} {{ obj.descripcion }} {% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="estado" class="custom-control-input" id="id_estado" {% if obj.edo %} checked {% endif %} >
+                                            <label class="custom-control-label" for="id_estado">Estado </label>
+                                        </div>
+                                    </div>
+                                    <!-- {{ form.as_p }} -->
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row divBtnModal">
