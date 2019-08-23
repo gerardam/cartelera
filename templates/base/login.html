@@ -1,64 +1,55 @@
 {% extends 'base/base.html' %}
 
-{% block sidebar %}{% endblock sidebar %}
-{% block topbar %}{% endblock topbar %}
-{% block pagecontent %}{% endblock pagecontent %}
-{% block footer %}{% endblock footer %}
-
-{% block login %}
-<div class="container">
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-        <div class="col-xl-10 col-lg-12 col-md-9">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Iniciar sesion</h1>
+{% block pagecontent %}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0">
+            <div class="card-body p-0 bg-gray-700">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Iniciar sesion</h1>
+                            </div>
+                            <form method="POST" class="user">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="id_username" name="username" aria-describedby="emailHelp" placeholder="Usuario">
                                 </div>
-                                <form method="POST" class="user">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="id_username" name="username" aria-describedby="emailHelp" placeholder="Usuario">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="id_password" name="password" placeholder="Contraseña">
-                                    </div>
-
-                                    <!-- {{ form.as_p }} -->
-
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Acceder</button>
-                                </form>
-                                <small class="text-danger">
-                                    {% if form.errors %}
-                                        {% for field in form %}
-                                            {% if field.errors %}
-                                                {% for error in field.errors %}
-                                                    {{ error|escape }}
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
-
-                                        {% if form.non_field_errors %}
-                                            {% for error in form.non_field_errors %}
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="id_password" name="password" placeholder="Contraseña">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Acceder</button>
+                            </form>
+                            <small class="text-danger">
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% if field.errors %}
+                                            {% for error in field.errors %}
                                                 {{ error|escape }}
                                             {% endfor %}
                                         {% endif %}
+                                    {% endfor %}
+
+                                    {% if form.non_field_errors %}
+                                        {% for error in form.non_field_errors %}
+                                            {{ error|escape }}
+                                        {% endfor %}
                                     {% endif %}
-                                </small>
-                            </div>
+                                {% endif %}
+                            </small>
                         </div>
+                    </div>
+                    <div class="col-lg-6" style="text-align: center;">
+                        <img style="width: 70%;" src="https://lh3.googleusercontent.com/owRh0yjtz2-OofKJBe9VOt6AUgX0j-y8PEvmr5pAPMXue_yfAA1M_ZuqtWRnvKf3tM_c6-u3uIFH-OIwtC4evogPfYmyK5Z-eeJZmU0Pj7jYOZS6z9GIhqe54EG_RXYRQLTHSD8mPQ=w2400" alt="Caratula de libros">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock login %}
+{% endblock pagecontent %}
 
-{% block jspage %}
-{% endblock jspage %}
+{% block login %}
+
+{% endblock login %}

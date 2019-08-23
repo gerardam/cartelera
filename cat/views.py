@@ -1,17 +1,21 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Genero
 from .forms import GeneroForm
+from base.views import SinAcceso
 
 
 ########## GENEROS ##########
-class GeneroView(generic.ListView):
+class GeneroView(SinAcceso, generic.ListView):
+    permission_required = 'cat.view_genero'
     model = Genero
     template_name = 'gen/genlis.html'
     context_object_name = 'obj'
 
-class GeneroNew(generic.CreateView):
+class GeneroNew(SinAcceso, generic.CreateView):
+    permission_required = 'cat.add_genero'
     model = Genero
     template_name = 'gen/genfor.html'
     context_object_name = 'obj'
@@ -22,7 +26,8 @@ class GeneroNew(generic.CreateView):
         form.instance.uc = self.request.user
         return super().FormValido(form)
 
-class GeneroEdit(generic.UpdateView):
+class GeneroEdit(SinAcceso, generic.UpdateView):
+    permission_required = 'cat.change_genero'
     model = Genero
     template_name = 'gen/genfor.html'
     context_object_name = 'obj'
@@ -33,6 +38,8 @@ class GeneroEdit(generic.UpdateView):
         form.instance.um = self.request.user.id
         return super().FormValido(form)
 
+@login_required(login_url='/login/')
+@permission_required('cat.change_genero', login_url='base:sinacceso')
 def GeneroInac(request, id):
     genero = Genero.objects.filter(pk=id).first()
     contexto = {}
