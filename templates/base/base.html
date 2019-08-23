@@ -154,20 +154,29 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-200 small">Gerardo Alvarez</span>
+
+                <span class="mr-2 d-none d-lg-inline text-white-600 small"><b>{{ user.username }}</b></span>
+
                 <img class="img-profile rounded-circle" src="https://lh3.googleusercontent.com/xc78LiwTvbPf97AVWO-wHTNisLQ48Gsv2vCKb_8XeUffmIRYUFqBaTnl4hRDeKOS4G7dPP_rswDbPyRWO5qH2kfqhDS7s_-XIOxpH9pb3E8y_XYhwMeUQn24tuEVN8uB-TRF5HdsnQ=w2400">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                {% if user.username %}
+                <a class="dropdown-item" href="/admin">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Configuracion
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  <i class="fas fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Cerrar sesion
                 </a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'base:login' %}">
+                    <i class="fas fa-sign-in fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Iniciar sesion
+                  </a>
+                {% endif %}
               </div>
             </li>
 
@@ -209,25 +218,43 @@
   </div>
   <!-- End of Page Wrapper -->
 
+  {% block login %}
+  {% endblock login %}
+
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+        <div class="col-xl-12 col-md-12 mb-12">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      <h5 class="modal-title">Cerrar sesión para <b>{{ user.username }}</b></h5>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <div class="row">
+                    <div class="col">
+                      <p>Seleccione "Cerrar" para finalizar la sesión actual.</p>
+                    </div>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <div class="row divBtnModal">
+                    <div class="col">
+                      <a class="btn btn-success" href="{% url 'base:logout' %}"><i class="fas fa-lock"></i> Cerrar</a>
+                      <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-lock-open"></i> Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
