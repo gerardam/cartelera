@@ -8,15 +8,15 @@ from .forms import GeneroForm
 ########## GENEROS ##########
 class GeneroView(generic.ListView):
     model = Genero
-    templateName = 'cat/genlis.html'
-    contextObjectName = 'obj'
+    template_name = 'cat/genlis.html'
+    context_object_name = 'obj'
 
 class GeneroNew(generic.CreateView):
     model = Genero
-    templateName = 'cat/genfor.html'
-    contextObjectName = 'obj'
-    formClass = GeneroForm
-    successUrl = reverse_lazy('cat:gelist')
+    template_name = 'cat/genfor.html'
+    context_object_name = 'obj'
+    form_class = GeneroForm
+    success_url = reverse_lazy('cat:gelist')
 
     def FormValido(self, form):
         form.instance.uc = self.request.user
@@ -24,10 +24,10 @@ class GeneroNew(generic.CreateView):
 
 class GeneroEdit(generic.UpdateView):
     model = Genero
-    templateName = 'cat/genfor.html'
-    contextObjectName = 'obj'
-    formClass = GeneroForm
-    successUrl = reverse_lazy('cat:gelist')
+    template_name = 'cat/genfor.html'
+    context_object_name = 'obj'
+    form_class = GeneroForm
+    success_url = reverse_lazy('cat:gelist')
 
     def FormValido(self, form):
         form.instance.um = self.request.user.id
@@ -36,7 +36,7 @@ class GeneroEdit(generic.UpdateView):
 def GeneroInac(request, id):
     genero = Genero.objects.filter(pk=id).first()
     contexto = {}
-    templateName = 'cat/gendel.html'
+    template_name = 'cat/gendel.html'
 
     if not genero:
         return redirect('cat:gelist')
@@ -49,4 +49,4 @@ def GeneroInac(request, id):
         genero.save()
         return redirect('cat:gelist')
 
-    return render(request, templateName, contexto)
+    return render(request, template_name, contexto)
