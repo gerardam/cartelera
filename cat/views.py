@@ -22,9 +22,9 @@ class GeneroNew(SinAcceso, generic.CreateView):
     form_class = GeneroForm
     success_url = reverse_lazy('cat:gelist')
 
-    def FormValido(self, form):
+    def form_valid(self, form):
         form.instance.uc = self.request.user
-        return super().FormValido(form)
+        return super().form_valid(form)
 
 class GeneroEdit(SinAcceso, generic.UpdateView):
     permission_required = 'cat.change_genero'
@@ -34,9 +34,9 @@ class GeneroEdit(SinAcceso, generic.UpdateView):
     form_class = GeneroForm
     success_url = reverse_lazy('cat:gelist')
 
-    def FormValido(self, form):
+    def form_valid(self, form):
         form.instance.um = self.request.user.id
-        return super().FormValido(form)
+        return super().form_valid(form)
 
 @login_required(login_url='/login/')
 @permission_required('cat.change_genero', login_url='base:sinacceso')
@@ -52,7 +52,7 @@ def GeneroInac(request, id):
         contexto = {'obj':genero}
 
     if request.method=='POST':
-        genero.estado = False
+        genero.edo = False
         genero.save()
         return redirect('cat:gelist')
 

@@ -1,18 +1,20 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form role="form" action="{% url 'gen:gen_del' obj.pk %}" method="post"  class="form-inline">
+        <form role="form" action="{% url 'cat:gedel' obj.pk %}" method="post"  class="form-inline">
             <div class="col-xl-12 col-md-12 mb-12">
                 <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Eliminar genero
+                        <div class="text-xs text-danger mb-1">
+                            <h6 class="m-0 font-weight-bold">Eliminar genero</h6>
                         </div>
                         <div class="dropdown-divider"></div>
                         {% csrf_token %}
                         <div class="row">
-                            ¿Eliminar el genero: <b> {{ obj.descripcion }} </b> ?
+                            <div class="col">
+                                ¿Eliminar el genero: <b> {{ obj.descripcion }} </b> ?
+                            </div>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="row divBtnModal">

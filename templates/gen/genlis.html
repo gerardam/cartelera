@@ -43,7 +43,7 @@
                     <td>
                         <div class="divAccionTable">
                             <button class="btn btn-primary btn-circle" onclick="return abrir_modal('{% url 'cat:geedit' item.id %}')"><i class="fas fa-edit"></i></button>
-                            <a href="{% url 'cat:gedel' item.id %}" class="btn btn-danger btn-circle" role="button"><i class="fas fa-trash"></i></a>
+                            <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cat:gedel' item.id %}')"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>

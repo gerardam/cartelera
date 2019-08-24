@@ -15,8 +15,13 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    {% if obj %} Editar {% else %} Nuevo {% endif %} genero
+                                {% if obj %}
+                                <div class="text-xs text-warning mb-1">
+                                {% else %}
+                                <div class="text-xs text-success mb-1">
+                                {% endif %}
+                                    <h6 class="m-0 font-weight-bold">
+                                    {% if obj %} Editar {% else %} Nuevo {% endif %} genero</h6>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
