@@ -1,5 +1,5 @@
 from django import forms
-from .models import Genero
+from .models import Genero, Pelicula
 
 
 ########## GENEROS ##########
@@ -16,3 +16,22 @@ class GeneroForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class':'form-control'
             })
+
+
+########## COMPRAS ##########
+class PeliculaForm(forms.ModelForm):
+    fecha_estreno = forms.DateInput()
+    
+    class Meta:
+        model=Pelicula
+        fields=['titulo','sinopsis','director',
+            'fecha_estreno','duracion','imagen',
+            'genero','edo']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
+        self.fields['fecha_estreno'].widget.attrs['readonly'] = True
