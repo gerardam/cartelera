@@ -2,7 +2,7 @@ from django import forms
 from .models import Genero, Pelicula
 
 
-########## GENEROS ##########
+########## GENERO ##########
 class GeneroForm(forms.ModelForm):
     class Meta:
         model = Genero
@@ -18,7 +18,7 @@ class GeneroForm(forms.ModelForm):
             })
 
 
-########## COMPRAS ##########
+########## PELICULA ##########
 class PeliculaForm(forms.ModelForm):
     fecha_estreno = forms.DateInput()
     
