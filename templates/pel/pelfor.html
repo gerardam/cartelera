@@ -1,1 +1,127 @@
-{% extends 'base/base.html' %}
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        {% if obj %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'cat:peedit' obj.pk %}" enctype="multipart/form-data">
+        {% else %}
+        <form method="POST" role="form" class="form-inline" action="{% url 'cat:penew' %}" enctype="multipart/form-data">
+        {% endif %}
+            {% csrf_token %}
+            <div class="col-xl-12 col-md-12 mb-12">
+                {% if obj %}
+                <div class="card border-left-warning shadow h-100 py-2">
+                {% else %}
+                <div class="card border-left-success shadow h-100 py-2">
+                {% endif %}
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                {% if obj %}
+                                <div class="text-xs text-warning mb-1">
+                                {% else %}
+                                <div class="text-xs text-success mb-1">
+                                {% endif %}
+                                    <h6 class="m-0 font-weight-bold">
+                                    {% if obj %} Editar {% else %} Nuevo {% endif %} pelicula</h6>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="row">
+                                    <!-- <div class="col-10">
+                                        <div class="input-group">
+                                            <input type="text" name="titulo" maxlength="100" class="form-control" required id="id_titulo" placeholder="titulo" value="{% if obj %} {{ obj.titulo }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="sinopsis" maxlength="100" class="form-control" required id="id_sinopsis" placeholder="sinopsis" value="{% if obj %} {{ obj.sinopsis }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="director" maxlength="100" class="form-control" required id="id_director" placeholder="director" value="{% if obj %} {{ obj.director }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="fecha_estreno" maxlength="100" class="form-control" required id="id_fecha_estreno" placeholder="fecha_estreno" value="{% if obj %} {{ obj.fecha_estreno }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="duracion" maxlength="100" class="form-control" required id="id_duracion" placeholder="duracion" value="{% if obj %} {{ obj.duracion }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="file" name="imagen" maxlength="100" class="form-control" required id="id_imagen" placeholder="imagen" value="{% if obj %} {{ obj.imagen }} {% endif %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <select id="id_genero" class="form-control" multiple>
+                                                {% for item in obj.genero %}
+                                                <option>{{ item.genero }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" name="edo" class="custom-control-input" id="id_edo" {% if obj.edo %} checked {% endif %} >
+                                            <label class="custom-control-label" for="id_edo">Estado </label>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="id_titulo">Titulo:</label>
+                                            {{ form.titulo }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_sinopsis">Sinopsis:</label>
+                                            {{ form.sinopsis }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_director">Director:</label>
+                                            {{ form.director }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_fecha_estreno">Fecha estreno:</label>
+                                            {{ form.fecha_estreno }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_duracion">Duracion:</label>
+                                            {{ form.duracion }}
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="id_imagen">Imagen:</label>
+                                            {{ form.imagen }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_genero">Genero:</label>
+                                            {{ form.genero }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_edo">Estado:</label>
+                                            {{ form.edo }}
+                                        </div>
+                                    </div>
+
+                                    <!-- {{ form.as_p }} -->
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="row divBtnModal">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                        <button type="button" class="btn btn-danger" onclick="return cerrar_modal()"><i class="fas fa-trash"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block jspage %}
+<script>
+    $(function () {
+        $("#id_fecha_estreno").datetimepicker({
+            format: 'Y-m-d',
+            timepicker:false
+        });
+    });
+</script>
+{% endblock jspage %}
