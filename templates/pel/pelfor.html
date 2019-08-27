@@ -25,41 +25,7 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row">
-                                    <!-- <div class="col-10">
-                                        <div class="input-group">
-                                            <input type="text" name="titulo" maxlength="100" class="form-control" required id="id_titulo" placeholder="titulo" value="{% if obj %} {{ obj.titulo }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" name="sinopsis" maxlength="100" class="form-control" required id="id_sinopsis" placeholder="sinopsis" value="{% if obj %} {{ obj.sinopsis }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" name="director" maxlength="100" class="form-control" required id="id_director" placeholder="director" value="{% if obj %} {{ obj.director }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" name="fecha_estreno" maxlength="100" class="form-control" required id="id_fecha_estreno" placeholder="fecha_estreno" value="{% if obj %} {{ obj.fecha_estreno }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" name="duracion" maxlength="100" class="form-control" required id="id_duracion" placeholder="duracion" value="{% if obj %} {{ obj.duracion }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="file" name="imagen" maxlength="100" class="form-control" required id="id_imagen" placeholder="imagen" value="{% if obj %} {{ obj.imagen }} {% endif %}">
-                                        </div>
-                                        <div class="input-group">
-                                            <select id="id_genero" class="form-control" multiple>
-                                                {% for item in obj.genero %}
-                                                <option>{{ item.genero }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="edo" class="custom-control-input" id="id_edo" {% if obj.edo %} checked {% endif %} >
-                                            <label class="custom-control-label" for="id_edo">Estado </label>
-                                        </div>
-                                    </div> -->
-
-                                    <div class="col-6">
+                                    <!-- <div class="col-6">
                                         <div class="form-group">
                                             <label for="id_titulo">Titulo:</label>
                                             {{ form.titulo }}
@@ -95,9 +61,9 @@
                                             <label for="id_edo">Estado:</label>
                                             {{ form.edo }}
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <!-- {{ form.as_p }} -->
+                                    {{ form.as_p }}
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <div class="row divBtnModal">
