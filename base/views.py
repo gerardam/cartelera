@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,\
         PermissionRequiredMixin
 from django.views import generic
+from cat.models import Pelicula
 
 
 class SinAcceso(LoginRequiredMixin, PermissionRequiredMixin):
@@ -17,8 +18,15 @@ class SinAcceso(LoginRequiredMixin, PermissionRequiredMixin):
             self.login_url = 'base:sinacceso'
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-class Home(generic.TemplateView):
-    template_name = 'base/home.html'
+def Home(request):
+    pelicula = Pelicula.objects.filter(edo = True)
+    return render(request, 'base/home.html', {'obj':pelicula})
+
+# class Home(generic.TemplateView):
+    # template_name = 'base/home.html'
+    # pelicula = Pelicula.objects.filter(edo=True)
+    # context_object_name = 'obj'
+
 
 class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):
     template_name = 'base/sinacceso.html'

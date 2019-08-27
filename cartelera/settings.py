@@ -124,7 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/album/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)#GAM: Necesario para que detecte archivos staticos
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'album'),
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'album')
 
 #GAM: Definicion de la ruta del login y la ruta al cerrar sesion
 LOGIN_REDIRECT_URL = '/'

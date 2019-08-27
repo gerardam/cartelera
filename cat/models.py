@@ -29,7 +29,7 @@ class Pelicula(ClaseModelo):
     fecha_estreno = models.DateField(null=True,blank=False)
     duracion = models.CharField(max_length=15,blank=False)
     #imagen = models.URLField(max_length = 1000, null = False, blank = False)
-    imagen = models.ImageField(upload_to='album/')
+    imagen = models.ImageField(upload_to='cat/preview/')
     genero = models.ManyToManyField(Genero, blank = True)
     
     def __str__(self):
