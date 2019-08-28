@@ -203,6 +203,4 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,django,visualstudiocode
-album/Prew2.png
-album/Prew1.png
-album/Prew3.png
+preview/
