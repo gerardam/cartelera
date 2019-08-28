@@ -57,10 +57,10 @@
           <span>Generos</span>
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-gray-400 py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
             {% for ge in gen %}
-            <a class="collapse-item" href="{% url 'base:gefiltro' ge.id %}">{{ ge.descripcion }}</a>
+            <a class="collapse-item text-gray-600" href="{% url 'base:gefiltro' ge.id %}">{{ ge.descripcion }}</a>
             {% endfor %}
           </div>
         </div>
@@ -74,10 +74,10 @@
           <span>Administracion</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="{% url 'cat:gelist' %}">Generos</a>
-            <a class="collapse-item" href="{% url 'cat:pelist' %}">Peliculas</a>
+          <div class="bg-gray-400 py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+            <a class="collapse-item text-gray-600" href="{% url 'cat:gelist' %}">Generos</a>
+            <a class="collapse-item text-gray-600" href="{% url 'cat:pelist' %}">Peliculas</a>
           </div>
         </div>
       </li>

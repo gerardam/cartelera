@@ -26,7 +26,7 @@ class PeliculaForm(forms.ModelForm):
         model=Pelicula
         fields=['titulo','sinopsis','director',
             'fecha_estreno','duracion','imagen',
-            'genero','edo']
+            'genero','url_video','edo']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

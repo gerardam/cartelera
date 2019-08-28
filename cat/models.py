@@ -30,6 +30,7 @@ class Pelicula(ClaseModelo):
     duracion = models.CharField(max_length=15,blank=False)
     #imagen = models.URLField(max_length = 1000, null = False, blank = False)
     imagen = models.ImageField(upload_to='cat/preview/')
+    url_video = models.CharField(max_length=250,null=False,blank=True)
     genero = models.ManyToManyField(Genero, blank = True)
     
     def __str__(self):
