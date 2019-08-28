@@ -20,6 +20,11 @@ class SinAcceso(LoginRequiredMixin, PermissionRequiredMixin):
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
 
+class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'base/sinacceso.html'
+    login_url = 'base:login'
+
+
 def Home(request):
     queryset = request.GET.get('buscar')
     pelicula = Pelicula.objects.filter(edo = True)
@@ -48,6 +53,15 @@ def FilGenero(request, gen_id=None):
     return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
 
 
-class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'base/sinacceso.html'
-    login_url = 'base:login'
+def FichaPeli(request, pel_id=None):
+    queryset = request.GET.get('buscar')
+    pelicula = Pelicula.objects.filter(id = pel_id)
+    genero = Genero.objects.filter(edo = True)
+    if queryset:
+        pelicula = Pelicula.objects.filter(
+            Q(titulo__icontains = queryset) |
+            Q(director__icontains = queryset)
+        ).distinct()
+        return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
+    else:
+        return render(request, 'base/ficha.html', {'obj':pelicula, 'gen':genero})
