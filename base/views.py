@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,\
         PermissionRequiredMixin
 from django.views import generic
+from django.db.models import Q
 from cat.models import Genero,Pelicula
 
 
@@ -18,10 +19,17 @@ class SinAcceso(LoginRequiredMixin, PermissionRequiredMixin):
             self.login_url = 'base:sinacceso'
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
-def Home(request):
-    pelicula = Pelicula.objects.filter(edo = True)
-    return render(request, 'base/home.html', {'obj':pelicula})
 
+def Home(request):
+    queryset = request.GET.get('buscar')
+    pelicula = Pelicula.objects.filter(edo = True)
+    genero = Genero.objects.filter(edo = True)
+    if queryset:
+        pelicula = Pelicula.objects.filter(
+            Q(titulo__icontains = queryset) |
+            Q(director__icontains = queryset)
+        ).distinct()
+    return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
 # class Home(generic.TemplateView):
     # template_name = 'base/home.html'
     # pelicula = Pelicula.objects.filter(edo=True)
@@ -29,8 +37,15 @@ def Home(request):
 
 
 def FilGenero(request, gen_id=None):
+    queryset = request.GET.get('buscar')
     pelicula = Pelicula.objects.filter(genero=gen_id)
-    return render(request, 'base/home.html', {'obj':pelicula})
+    genero = Genero.objects.filter(edo = True)
+    if queryset:
+        pelicula = Pelicula.objects.filter(genero=gen_id).filter(
+            Q(titulo__icontains = queryset) |
+            Q(director__icontains = queryset)
+        ).distinct()
+    return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
 
 
 class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):

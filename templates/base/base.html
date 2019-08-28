@@ -59,14 +59,9 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" href="{% url 'base:gefiltro' 13 %}">Accion</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 6 %}">Animadas</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 11 %}">Aventuras</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 8 %}">Comedia</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 12 %}">Drama</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 7 %}">Superheroes</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 10 %}">Suspenso</a>
-            <a class="collapse-item" href="{% url 'base:gefiltro' 9 %}">Terror</a>
+            {% for ge in gen %}
+            <a class="collapse-item" href="{% url 'base:gefiltro' ge.id %}">{{ ge.descripcion }}</a>
+            {% endfor %}
           </div>
         </div>
       </li>
@@ -146,12 +141,12 @@
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="buscar" value="{{ request.GET.buscar }}">
+              <!-- <div class="input-group-append">
                 <button class="btn btn-secondary border-0" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
-              </div>
+              </div> -->
             </div>
           </form>
 
