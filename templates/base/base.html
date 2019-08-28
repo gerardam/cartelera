@@ -59,11 +59,14 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" href="buttons.html">Aventuras</a>
-            <a class="collapse-item" href="cards.html">Terror</a>
-            <a class="collapse-item" href="cards.html">Suspenso</a>
-            <a class="collapse-item" href="cards.html">Animadas</a>
-            <a class="collapse-item" href="cards.html">Superheroes</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 13 %}">Accion</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 6 %}">Animadas</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 11 %}">Aventuras</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 8 %}">Comedia</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 12 %}">Drama</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 7 %}">Superheroes</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 10 %}">Suspenso</a>
+            <a class="collapse-item" href="{% url 'base:gefiltro' 9 %}">Terror</a>
           </div>
         </div>
       </li>
