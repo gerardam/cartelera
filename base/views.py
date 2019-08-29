@@ -55,7 +55,7 @@ def FilGenero(request, gen_id=None):
 
 def FichaPeli(request, pel_id=None):
     queryset = request.GET.get('buscar')
-    pelicula = Pelicula.objects.filter(id = pel_id)
+    pelicula = Pelicula.objects.filter(id = pel_id).first()
     genero = Genero.objects.filter(edo = True)
     if queryset:
         pelicula = Pelicula.objects.filter(

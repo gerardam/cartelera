@@ -4,30 +4,38 @@
 <div class="container-fluid">
 <div class="row">
     {% if obj %}
-    {% for peli in obj %}
     <div class="col-md-12">
         <div class="card mb-3 bg-gradient-dark">
             <div class="row no-gutters">
                 <div class="col-md-5 text-center">
-                <img src="{{ peli.imagen.url }}" class="card-img" alt="Imagen" style="max-width: 300px;">
+                    <br>
+                <img src="{{ obj.imagen.url }}" class="card-img" alt="Imagen" style="max-width: 300px;">
                 </div>
                 <div class="col-md-7">
                 <div class="card-body text-gray-300">
-                    <h4 class="card-title">{{ peli.titulo }}</h4>
+                    <h4 class="card-title">{{ obj.titulo }}</h4>
                     <h6>Sinopsis:</h6>
-                    <p class="card-text">{{ peli.sinopsis }}</p>
+                    <p class="card-text">{{ obj.sinopsis }}</p>
                     <h6>Duracion:</h6>
-                    <p class="card-text">{{ peli.duracion }}</p>
+                    <p class="card-text">{{ obj.duracion }}</p>
                     <h6>Director:</h6>
-                    <p class="card-text">{{ peli.director }}</p>
+                    <p class="card-text">{{ obj.director }}</p>
                     <h6>Año de estreno:</h6>
-                    <p class="card-text"><small class="text-muted">{{ peli.fecha_estreno|date:'Y' }}</small></p>
+                    <p class="card-text"><small class="text-muted">{{ obj.fecha_estreno|date:'Y' }}</small></p>
                 </div>
                 </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8 text-center">
+                    <br><br>
+                    <video controls style="width: 100%;">
+                        <source src="{{ obj.url_video }}" type="video/mp4">
+                        Tu navegador no implementa el elemento <code>video</code>.
+                    </video>
+                </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
     </div>
-    {% endfor %}
     {% endif %}
 </div>
 </div>
