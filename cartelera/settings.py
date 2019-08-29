@@ -123,11 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+#GAM: Necesario para que detecte archivos staticos
 STATIC_URL = '/static/'
 MEDIA_URL = '/album/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)#GAM: Necesario para que detecte archivos staticos
-
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'album'),
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'album')
 
 #GAM: Definicion de la ruta del login y la ruta al cerrar sesion

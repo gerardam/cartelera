@@ -27,13 +27,13 @@ class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):
 
 def Home(request):
     queryset = request.GET.get('buscar')
-    pelicula = Pelicula.objects.filter(edo = True)
+    pelicula = Pelicula.objects.filter(edo = True).order_by('-id')[:36]
     genero = Genero.objects.filter(edo = True)
     if queryset:
         pelicula = Pelicula.objects.filter(
             Q(titulo__icontains = queryset) |
             Q(director__icontains = queryset)
-        ).distinct()
+        ).distinct().order_by('-id')[:12]
     return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
 # class Home(generic.TemplateView):
     # template_name = 'base/home.html'
@@ -43,13 +43,13 @@ def Home(request):
 
 def FilGenero(request, gen_id=None):
     queryset = request.GET.get('buscar')
-    pelicula = Pelicula.objects.filter(genero=gen_id)
+    pelicula = Pelicula.objects.filter(genero=gen_id).order_by('-id')[:36]
     genero = Genero.objects.filter(edo = True)
     if queryset:
         pelicula = Pelicula.objects.filter(genero=gen_id).filter(
             Q(titulo__icontains = queryset) |
             Q(director__icontains = queryset)
-        ).distinct()
+        ).distinct().order_by('-id')[:12]
     return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
 
 
@@ -61,7 +61,7 @@ def FichaPeli(request, pel_id=None):
         pelicula = Pelicula.objects.filter(
             Q(titulo__icontains = queryset) |
             Q(director__icontains = queryset)
-        ).distinct()
+        ).distinct().order_by('-id')[:12]
         return render(request, 'base/home.html', {'obj':pelicula, 'gen':genero})
     else:
         return render(request, 'base/ficha.html', {'obj':pelicula, 'gen':genero})
