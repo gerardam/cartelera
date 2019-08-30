@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Genero, Pelicula
-from .forms import GeneroForm, PeliculaForm
+from .models import Genero, Serie, Pelicula
+from .forms import GeneroForm, SerieForm, PeliculaForm
 from base.views import SinAcceso
 
 
@@ -55,6 +55,58 @@ def GeneroInac(request, id):
         genero.edo = False
         genero.save()
         return redirect('cat:gelist')
+
+    return render(request, template_name, contexto)
+
+
+########## SERIE ##########
+class SerieView(SinAcceso, generic.ListView):
+    permission_required = 'cat.view_serie'
+    model = Serie
+    template_name = 'ser/serlis.html'
+    context_object_name = 'obj'
+
+class SerieNew(SinAcceso, generic.CreateView):
+    permission_required = 'cat.add_serie'
+    model = Serie
+    template_name = 'ser/serfor.html'
+    context_object_name = 'obj'
+    form_class = SerieForm
+    success_url = reverse_lazy('cat:selist')
+
+    def form_valid(self, form):
+        form.instance.uc = self.request.user
+        return super().form_valid(form)
+
+class SerieEdit(SinAcceso, generic.UpdateView):
+    permission_required = 'cat.change_serie'
+    model = Serie
+    template_name = 'ser/serfor.html'
+    context_object_name = 'obj'
+    form_class = SerieForm
+    success_url = reverse_lazy('cat:selist')
+
+    def form_valid(self, form):
+        form.instance.um = self.request.user.id
+        return super().form_valid(form)
+
+@login_required(login_url='/login/')
+@permission_required('cat.change_serie', login_url='base:sinacceso')
+def SerieInac(request, id):
+    serie = Serie.objects.filter(pk=id).first()
+    contexto = {}
+    template_name = 'ser/serdel.html'
+
+    if not serie:
+        return redirect('cat:selist')
+
+    if request.method=='GET':
+        contexto = {'obj':serie}
+
+    if request.method=='POST':
+        serie.edo = False
+        serie.save()
+        return redirect('cat:selist')
 
     return render(request, template_name, contexto)
 
