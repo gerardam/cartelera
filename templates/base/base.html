@@ -55,7 +55,21 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-gray-400 py-2 collapse-inner rounded">
             {% for ge in gen %}
-            <a class="collapse-item text-gray-600" href="{% url 'base:gefiltro' ge.id %}">{{ ge.descripcion }}</a>
+            <a class="collapse-item text-gray-600" href="{% url 'base:sefiltro' ge.id %}">{{ ge.descripcion }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-play-circle"></i>
+          <span>Series</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+          <div class="bg-gray-400 py-2 collapse-inner rounded">
+            {% for se in ser %}
+            <a class="collapse-item text-gray-600" href="{% url 'base:sefiltro' se.id %}">{{ se.descripcion }}</a>
             {% endfor %}
           </div>
         </div>

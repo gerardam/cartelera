@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block pagecontent %}
+<div class="container-fluid">
+<div class="row">
+    {% if obj %}
+    <div class="col-md-12">
+        <div class="card mb-3 bg-gradient-dark">
+            <div class="row no-gutters">
+                <div class="col-md-12"></div>
+                <div class="col-md-8 text-center">
+                    <video id="sevideo" controls preload="auto" style="width: 100%;">
+                        <source src="{{ p_next.url_video }}" type="video/mp4">
+                        Tu navegador no implementa el elemento <code>video</code>.
+                    </video>
+                </div>
+                <div class="col-md-4" style="max-height: 500px;overflow: auto;">
+                    <ul class="navbar-nav bg-gray-900 sidebar-dark accordion" style="width: 100%;">
+                        {% for pel in obj %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'base:secapitulo' pel.serie_id pel.id %}" aria-expanded="true">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>{{ pel.titulo }}</span>
+                                    </a>
+                            <!-- <a class="nav-link" href="#" onclick="siguiente({{ pel.serie_id }}, {{ pel.id }})" aria-expanded="true">
+                              <i class="fas fa-play-circle"></i>
+                              <span>{{ pel.titulo }}</span>
+                            </a> -->
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock pagecontent %}
+
+{% block jspage %}
+<script>
+    /*bucas como obtener los datos del siguiente capitulo*/
+    // $(document).ready(function () {
+    //     var vid1 = document.getElementById("sevideo")
+    //     const video = vid1;
+    //     video.addEventListener('ended', (event) => {
+    //         //window.location="{% url 'base:secapitulo' pel.serie_id pel.id %}"
+    //         //vid2.play();
+    //     });
+    // });
+// function siguiente(seid, peid){
+//     var data = {ser_id:seid, pel_id:peid};
+//     data = JSON.stringify(data);
+//     var token = '{{ csrf_token }}';
+
+//     $.ajax({
+//         headers : {"X-CSRFToken": token},
+//         type: "POST",
+//         url: "/serie/"+seid+"/cap/"+peid,
+//         data : data,
+//         success: function(response){
+//             if(response === "OK"){
+//                 location.reload(true);
+//             }
+//             else{
+//                 console.log("Error al intentar cambiar el estado");
+//             }
+//         },
+//         error: function(jqXHR, textStatus, errorThrow) {
+//             console.log(textStatus, errorThrow);
+//         }
+//     });
+// }
+</script>
+{% endblock %}
