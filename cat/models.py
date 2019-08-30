@@ -28,7 +28,7 @@ class Pelicula(ClaseModelo):
     director = models.CharField(max_length=100,null=False,blank=True)
     fecha_estreno = models.DateField(null=True,blank=False)
     duracion = models.CharField(max_length=15,blank=False)
-    imagen = models.ImageField(upload_to='cat/preview/')
+    imagen = models.ImageField(upload_to='cat/preview/',default='cat/preview/prew.png')
     url_video = models.CharField(max_length=250,null=False,blank=True)
     genero = models.ManyToManyField(Genero, blank = True)
     

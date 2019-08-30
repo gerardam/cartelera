@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin,\
         PermissionRequiredMixin
 from django.views import generic
 from django.db.models import Q
+from django.http import HttpResponse
+import json
 from cat.models import Genero,Pelicula
 
 
