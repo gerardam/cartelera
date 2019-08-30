@@ -50,6 +50,7 @@ class Pelicula(ClaseModelo):
     imagen = models.ImageField(upload_to='cat/preview/',default='cat/preview/prew.png')
     url_video = models.CharField(max_length=250,null=False,blank=True)
     genero = models.ManyToManyField(Genero, blank = True)
+    serie = models.ForeignKey(Serie, default=1, on_delete=models.CASCADE)
     
     def __str__(self):
         return '{}'.format(self.titulo)
