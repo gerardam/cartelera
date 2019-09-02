@@ -11,5 +11,5 @@ urlpatterns = [
     path('genero/<int:gen_id>', FilGenero, name="gefiltro"),
     path('ficha/<int:pel_id>', FichaPeli, name="peficha"),
     path('serie/<int:ser_id>', FilSerie, name="sefiltro"),
-    path('serie/<int:ser_id>/cap/<int:pel_id>',VerPeliSerie, name="secapitulo"),
+    path('serie/<int:ser_id>/cap/<int:pel_id>', VerPeliSerie, name="secapitulo"),
 ]

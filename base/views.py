@@ -80,7 +80,7 @@ def FilSerie(request, ser_id=None):
     queryset = request.GET.get('buscar')
     pelicula = Pelicula.objects.filter(serie_id=ser_id).order_by('id')
     peliuno = Pelicula.objects.filter(serie_id=ser_id).order_by('id').first()
-    peli_next = Pelicula.objects.filter(id=peliuno.id).first()
+    pelicurso = Pelicula.objects.filter(id=peliuno.id).first()
     genero = Genero.objects.filter(edo = True)
     serie = Serie.objects.filter(edo = True).exclude(id=1)
     if queryset:
@@ -92,13 +92,13 @@ def FilSerie(request, ser_id=None):
         {'obj':pelicula, 'gen':genero, 'ser':serie})
     else:
         return render(request, 'base/vistaserie.html',\
-        {'obj':pelicula, 'gen':genero, 'ser':serie, 'p_next':peli_next})
+        {'obj':pelicula, 'gen':genero, 'ser':serie, 'p_curso':pelicurso})
 
 
-def VerPeliSerie(request, ser_id, pel_id=None):
+def VerPeliSerie(request, ser_id=None, pel_id=None):
     queryset = request.GET.get('buscar')
     pelicula = Pelicula.objects.filter(serie_id=ser_id).order_by('id')
-    peli_next = Pelicula.objects.filter(id=pel_id).first()
+    pelicurso = Pelicula.objects.filter(id=pel_id).first()
     genero = Genero.objects.filter(edo = True)
     serie = Serie.objects.filter(edo = True).exclude(id=1)
     if queryset:
@@ -110,4 +110,4 @@ def VerPeliSerie(request, ser_id, pel_id=None):
         {'obj':pelicula, 'gen':genero, 'ser':serie})
     else:
         return render(request, 'base/vistaserie.html',\
-        {'obj':pelicula, 'gen':genero, 'ser':serie, 'p_next':peli_next})
+        {'obj':pelicula, 'gen':genero, 'ser':serie, 'p_curso':pelicurso})

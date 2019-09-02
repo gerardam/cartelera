@@ -55,7 +55,7 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-gray-400 py-2 collapse-inner rounded">
             {% for ge in gen %}
-            <a class="collapse-item text-gray-600" href="{% url 'base:sefiltro' ge.id %}">{{ ge.descripcion }}</a>
+            <a class="collapse-item text-gray-600" href="{% url 'base:gefiltro' ge.id %}">{{ ge.descripcion }}</a>
             {% endfor %}
           </div>
         </div>
