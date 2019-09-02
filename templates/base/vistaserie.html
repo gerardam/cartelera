@@ -14,7 +14,7 @@
                         Tu navegador no implementa el elemento <code>video</code>.
                     </video>
                 </div>
-                <div class="col-md-4" style="max-height: 500px;overflow: auto;">
+                <div class="col-md-4" style="max-height: 535px;overflow: auto;">
                     <ul id="ulSerie" class="navbar-nav bg-gray-900 sidebar-dark accordion" style="width: 100%;">
                         {% for pel in obj %}
                         <li class="nav-item" id="{{ pel.serie_id }}_{{ pel.id }}">
@@ -27,9 +27,12 @@
                     </ul>
                 </div>
                 <div class="col-md-8 text-gray-300">
-                    <br>
-                    <h6>Sinopsis:</h6>
-                    <p class="card-text">{{ p_curso.sinopsis }}</p>
+                    <div class="col-md-12">
+                        <br>
+                        <p class="card-text">{{ p_curso.titulo }}</p>
+                        <h6>Sinopsis:</h6>
+                        <p class="card-text">{{ p_curso.sinopsis }}</p>
+                    </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>
@@ -43,19 +46,31 @@
 {% block jspage %}
 <script>
     $(document).ready(function () {
-        // var idcad = $("#ulSerie li").eq(1).attr("id");
-        // var res = idcad.split("_");
-        // var vser = res[0];
-        // var vpel = res[1];
+        $('#ulSerie li').click(function() {
+            sessionStorage.setItem("capnext", $(this).index());
+        });
+
+        var actili=0;
+        if(sessionStorage.getItem("capnext") != null){
+            actili = parseInt(sessionStorage.getItem("capnext"))
+        }
+        $("#ulSerie li").addClass(function(index) {
+            if(index == actili)
+                return "active";
+        });
 
         var vid1 = document.getElementById("sevideo")
-        vid1.play();
+        //vid1.play();
         const video = vid1;
         video.addEventListener('ended', (event) => {
             var index = 1;
-            if(sessionStorage.getItem("capnext") != null)
+            if(sessionStorage.getItem("capnext") != null){
                 index = parseInt(sessionStorage.getItem("capnext")) + 1;
-
+                if(index > ($("li").length - 5)){
+                    sessionStorage.setItem("capnext", 0);
+                    index = 0;
+                }
+            }
             var idcad = $("#ulSerie li").eq(index).attr("id");
             var res = idcad.split("_");
             var vser = res[0];
