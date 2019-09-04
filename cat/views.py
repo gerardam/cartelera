@@ -10,7 +10,8 @@ from base.views import SinAcceso
 ########## GENERO ##########
 class GeneroView(SinAcceso, generic.ListView):
     permission_required = 'cat.view_genero'
-    model = Genero
+    #model = Genero
+    queryset = Genero.objects.order_by('-id')
     template_name = 'gen/genlis.html'
     context_object_name = 'obj'
 
@@ -62,7 +63,8 @@ def GeneroInac(request, id):
 ########## SERIE ##########
 class SerieView(SinAcceso, generic.ListView):
     permission_required = 'cat.view_serie'
-    model = Serie
+    #model = Serie
+    queryset = Serie.objects.order_by('-id')
     template_name = 'ser/serlis.html'
     context_object_name = 'obj'
 
@@ -114,7 +116,7 @@ def SerieInac(request, id):
 ########## PELICULA ##########
 class PeliculaView(SinAcceso, generic.ListView):
     permission_required = 'cat.view_pelicula'
-    model = Pelicula
+    queryset = Pelicula.objects.order_by('-id')
     template_name = 'pel/pellis.html'
     context_object_name = 'obj'
 
