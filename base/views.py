@@ -29,7 +29,8 @@ class HomeSinAcceso(LoginRequiredMixin, generic.TemplateView):
 
 def Home(request):
     queryset = request.GET.get('buscar')
-    pelicula = Pelicula.objects.filter(edo = True).order_by('-id')[:36]
+    pelicula = Pelicula.objects.filter(edo = True)\
+        .filter(serie = 1).order_by('-id')[:60]
     genero = Genero.objects.filter(edo = True)
     serie = Serie.objects.filter(edo = True).exclude(id=1)
     if queryset:
@@ -47,7 +48,8 @@ def Home(request):
 
 def FilGenero(request, gen_id=None):
     queryset = request.GET.get('buscar')
-    pelicula = Pelicula.objects.filter(genero=gen_id).order_by('-id')[:36]
+    pelicula = Pelicula.objects.filter(genero=gen_id)\
+        .filter(serie = 1).order_by('-id')[:60]
     genero = Genero.objects.filter(edo = True)
     serie = Serie.objects.filter(edo = True).exclude(id=1)
     if queryset:
