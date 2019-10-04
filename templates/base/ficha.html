@@ -9,29 +9,35 @@
             <div class="row no-gutters">
                 <div class="col-md-5 text-center">
                     <br>
-                <img src="{{ obj.imagen.url }}" class="card-img" alt="Imagen" style="max-width: 300px;">
+                    <img src="{{ obj.imagen.url }}" class="card-img" alt="Imagen" style="max-width: 300px;">
                 </div>
                 <div class="col-md-7">
-                <div class="card-body text-gray-300">
-                    <h4 class="card-title">{{ obj.titulo }}</h4>
-                    <h6>Sinopsis:</h6>
-                    <p class="card-text">{{ obj.sinopsis }}</p>
-                    <h6>Duracion:</h6>
-                    <p class="card-text">{{ obj.duracion }}</p>
-                    <h6>Director:</h6>
-                    <p class="card-text">{{ obj.director }}</p>
-                    <h6>Año de estreno:</h6>
-                    <p class="card-text"><small class="text-muted">{{ obj.fecha_estreno|date:'Y' }}</small></p>
-                </div>
+                    <div class="card-body text-gray-300">
+                        <h4 class="card-title">{{ obj.titulo }}</h4>
+                        <h6>Sinopsis:</h6>
+                        <p class="card-text">{{ obj.sinopsis }}</p>
+                        <h6>Duracion:</h6>
+                        <p class="card-text">{{ obj.duracion }}</p>
+                        <h6>Director:</h6>
+                        <p class="card-text">{{ obj.director }}</p>
+                        <h6>Año de estreno:</h6>
+                        <p class="card-text"><small class="text-muted">{{ obj.fecha_estreno|date:'Y' }}</small></p>
+                        <a href="" id="localMedia" class="btn btn-primary">Abrir en el equipo</a>
+                        <a href="#" onclick="window.location.href='{{ obj.url_video }}'; return false;"> Abrir... </a>
+                    </div>
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-8 text-center">
                     <br><br>
-                    <video controls preload="auto" style="width: 100%;">
+                    <!-- <video id="pevideo" controls preload="auto" style="width: 100%;">
+                        <source src="{{ obj.url_video }}" type="video/mp4">
+                        Tu navegador no implementa el elemento video.
+                    </video> -->
+                    <video id="pevideo" class="video-js" controls preload="auto" style="width: 100%;" data-setup="{}">
                         <source src="{{ obj.url_video }}" type="video/mp4">
                         Tu navegador no implementa el elemento video.
                     </video>
-                    <!-- <embed id="divxplayer" type="video/divx" width="1024" height="768" src ="{{ obj.url_video }}" autoPlay=\"true\" pluginspage=\"http://go.divx.com/plugin/download/\"></embed> -->
+                    <br>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -41,3 +47,11 @@
 </div>
 </div>
 {% endblock pagecontent %}
+
+{% block jspage %}
+<script>
+    var reproductor = videojs('pevideo', {
+        fluid: true
+    });
+</script>
+{% endblock %}

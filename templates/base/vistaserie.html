@@ -60,7 +60,7 @@
         });
 
         var vid1 = document.getElementById("sevideo")
-        //vid1.play();
+        vid1.play();//Descomentar para inicio automatico
         const video = vid1;
         video.addEventListener('ended', (event) => {
             var index = 1;
@@ -75,7 +75,7 @@
             var res = idcad.split("_");
             var vser = res[0];
             var vpel = res[1];
-            console.log("video siguiente");
+            //console.log("video siguiente");
             window.location="/serie/"+ vser +"/cap/"+ vpel;
             //vid2.play();
             sessionStorage.setItem("capnext", index);
