@@ -29,14 +29,14 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8 text-center">
                     <br><br>
-                    <!-- <video id="pevideo" controls preload="auto" style="width: 100%;">
-                        <source src="{{ obj.url_video }}" type="video/mp4">
-                        Tu navegador no implementa el elemento video.
-                    </video> -->
-                    <video id="pevideo" class="video-js" controls preload="auto" style="width: 100%;" data-setup="{}">
+                    <video id="pevideo" controls preload="auto" style="width: 100%;">
                         <source src="{{ obj.url_video }}" type="video/mp4">
                         Tu navegador no implementa el elemento video.
                     </video>
+                    <!-- <video id="pevideo" class="video-js" controls preload="auto" style="width: 100%;" data-setup='{ "audioTracks":{"length":0}, "videoTracks":{"length":0} }'>
+                        <source src="{{ obj.url_video }}" type="video/mp4">
+                        Tu navegador no implementa el elemento video.
+                    </video> -->
                     <br>
                 </div>
                 <div class="col-md-2"></div>
@@ -48,10 +48,10 @@
 </div>
 {% endblock pagecontent %}
 
-{% block jspage %}
+<!-- {% block jspage %}
 <script>
     var reproductor = videojs('pevideo', {
         fluid: true
     });
 </script>
-{% endblock %}
+{% endblock %} -->
